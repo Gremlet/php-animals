@@ -47,8 +47,8 @@ $categories = $temp_categories;
         <form action="results.php" method="POST" class="form">
             <fieldset>
                 <legend>The Zoo</legend>
-                <label for="letter">Enter a letter</label>
-                <input type="text" id="letter" name="letter">
+                <label for="letter">Enter an animal name or part of a name</label>
+                <input type="text" id="letter" name="letter" placeholder="E.g. &#8220;älg&#8221; or &#8220;a&#8221;">
                 <label for="category">Choose a type of animal</label>
                 <select name="category" id="category">
                     <!--  populated from the database -->

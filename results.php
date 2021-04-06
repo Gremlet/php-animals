@@ -40,31 +40,35 @@ if (isset($_POST['submit'])) {
 <body>
     <h1>The Zoo</h1>
     <div class="results-table-container">
-        <table>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Category</th>
-                <th>Birthday</th>
-            </tr>
+        <a href="index.php">Go Back</a>
+        <?php
+        if ($result) {
+        ?>
 
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Birthday</th>
+                </tr>
             <?php
-            if ($result) {
-                foreach ($result as $animals) {
-                    echo "<tr>";
-                    echo "<td>" . $animals['id'] . "</td>";
-                    echo "<td>" . $animals['name'] . "</td>";
-                    echo "<td>" . $animals['category'] . "</td>";
-                    echo "<td>" . $animals['birthday'] . "</td>";
-                    echo "</tr>";
-                }
-            } else {
-                echo "<p> Sorry, there were no animals in that category with " . "&#8220;" . $_POST['letter'] . "&#8221;
-                " . " in the name </p> ";
+            foreach ($result as $animals) {
+                echo "<tr>";
+                echo "<td>" . $animals['id'] . "</td>";
+                echo "<td>" . $animals['name'] . "</td>";
+                echo "<td>" . $animals['category'] . "</td>";
+                echo "<td>" . $animals['birthday'] . "</td>";
+                echo "</tr>";
             }
+        } else {
+            echo "<p> Sorry, there were no animals in that category with " . "&#8220;" . $_POST['letter'] . "&#8221;
+                " . " in the name </p> ";
+        }
             ?>
-            <a href="index.php">Go Back</a>
-        </table>
+
+
+            </table>
     </div>
 </body>
 
