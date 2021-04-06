@@ -10,24 +10,6 @@ $password = 'zoo';
 
 $dbh = new PDO('mysql:host=localhost;dbname=zoo', $user, $password);
 
-if (isset($_POST['submit'])) {
-
-    $query = "SELECT * FROM animals WHERE name LIKE CONCAT('%', :letter, '%') && category = :category ";
-    $statement = $dbh->prepare($query, array(PDO::FETCH_ASSOC));
-
-    $statement->execute(array(
-        ':letter' => $_POST['letter'],
-        ':category' => $_POST['category']
-    ));
-
-
-    $result = $statement->fetchAll();
-
-    // testing that query works. Will do actual rendering later
-    foreach ($result as $animals) {
-        echo $animals['name'] . "<br/>";
-    }
-}
 // get an array from categories in order to populate the dropdown
 $query_category = "SELECT DISTINCT category FROM animals";
 
@@ -38,9 +20,9 @@ foreach ($dbh->query($query_category) as $category_result) {
 }
 // get the array from outside the foreach loop
 $categories = $temp_categories;
-echo '<pre>';
-print_r($categories);
-echo '</pre>';
+// echo '<pre>';
+// print_r($categories);
+// echo '</pre>';
 
 
 ?>
@@ -53,22 +35,32 @@ echo '</pre>';
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Montserrat&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
 </head>
 
 <body>
-    <form action="index.php" method="POST">
-        <label for="letter">Enter a letter</label>
-        <input type="text" id="letter" name="letter">
-        <label for="category">Choose a type of animal</label>
-        <select name="category" id="category">
-            <!--  populated from the database -->
-            <option value="<?php echo $categories[0] ?>"><?php echo $categories[0] ?></option>
-            <option value="<?php echo $categories[1] ?>"><?php echo $categories[1] ?></option>
-            <option value="<?php echo $categories[2] ?>"><?php echo $categories[2] ?></option>
-            <option value="<?php echo $categories[3] ?>"><?php echo $categories[3] ?></option>
-        </select>
-        <input type="submit" name="submit" value="Submit">
-    </form>
+    <div class="intro">
+        <h1>The Zoo</h1>
+    </div>
+    <div class="form-container">
+        <form action="results.php" method="POST" class="form">
+            <fieldset>
+                <legend>The Zoo</legend>
+                <label for="letter">Enter a letter</label>
+                <input type="text" id="letter" name="letter">
+                <label for="category">Choose a type of animal</label>
+                <select name="category" id="category">
+                    <!--  populated from the database -->
+                    <option value="<?php echo $categories[0] ?>"><?php echo $categories[0] ?></option>
+                    <option value="<?php echo $categories[1] ?>"><?php echo $categories[1] ?></option>
+                    <option value="<?php echo $categories[2] ?>"><?php echo $categories[2] ?></option>
+                    <option value="<?php echo $categories[3] ?>"><?php echo $categories[3] ?></option>
+                </select>
+                <input type="submit" name="submit" value="Submit">
+            </fieldset>
+        </form>
+    </div>
 </body>
 
 </html>
