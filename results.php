@@ -77,7 +77,7 @@ if (isset($_POST['submit'])) {
     <div class="image-container">
         <?php
 
-        if (isset($_FILES['file'])) {
+        if ($_FILES) {
 
             $errors = array();
             $file_name = $_FILES['file']['name'];
@@ -90,6 +90,7 @@ if (isset($_POST['submit'])) {
             $uploadPath = $uploadDir . basename($file_name);
 
             $extensions = array("jpeg", "jpg", "png");
+
 
             if (in_array($file_ext, $extensions) === false) {
                 $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
