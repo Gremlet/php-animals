@@ -23,21 +23,7 @@ if (isset($_POST['submit'])) {
 
     $result = $statement->fetchAll();
 }
-if(isset($_POST["submit"])) {
-    $uploadDir = "uppladningsFile/";
-    $uploadPath = $uploadDir . basename($_FILES['fileToUpload']['name']);
-    if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadPath)) {
-        echo "Filen är uppladdad";
 
-    } else {
-        echo "Något gick fel";
-    }
-
-   /*  if (file_exists($uploadPath)) {
-        echo "Sorry, file already exists.";
-      }
-     */
-  }
 ?>
 
 <!DOCTYPE html>
@@ -93,7 +79,7 @@ if(isset($_POST["submit"])) {
                 if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadPath)) {
                     echo "<p> Filen är uppladdad</p>";
                 } else {
-                    echo "<p>Något gick fel</p>";
+                    echo "<p>Något gick fel med filuppladdning</p>";
                 }
 
                 /*  if (file_exists($uploadPath)) {
