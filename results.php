@@ -41,29 +41,29 @@ if (isset($_POST['submit'])) {
 <body>
     <h1>The Zoo</h1>
     <p class="show-text">
-    <?php
-    if(isset($_POST["submit"])) {
-        $uploadDir = "uploads/";
-        $name = $_FILES['fileToUpload']['name'];
-        $uploadPath = $uploadDir . basename($name);
-        $temp = $_FILES['fileToUpload']['tmp_name'];
-        $fileName = pathinfo($name, PATHINFO_FILENAME);
-        $extension = pathinfo($name, PATHINFO_EXTENSION);
-        $counter = 1;
-
-        if (file_exists($uploadDir . $fileName . '.' . $extension)) {
-            $name = $fileName . '-' . $counter . '.' . $extension;
+        <?php
+        if (isset($_POST["submit"])) {
+            $uploadDir = "uploads/";
+            $name = $_FILES['fileToUpload']['name'];
             $uploadPath = $uploadDir . basename($name);
-            $counter++;
-        }
+            $temp = $_FILES['fileToUpload']['tmp_name'];
+            $fileName = pathinfo($name, PATHINFO_FILENAME);
+            $extension = pathinfo($name, PATHINFO_EXTENSION);
+            $counter = 1;
 
-        if (move_uploaded_file($temp, $uploadPath)) {
-            echo "File " . $name . " is uploaded!";
-        } else {
-            echo "There was an error uploading the file, please try again!";
+            if (file_exists($uploadDir . $fileName . '.' . $extension)) {
+                $name = $fileName . '-' . $counter . '.' . $extension;
+                $uploadPath = $uploadDir . basename($name);
+                $counter++;
+            }
+
+            if (move_uploaded_file($temp, $uploadPath)) {
+                echo "File " . $name . " is uploaded!";
+            } else {
+                echo "There was an error uploading the file, please try again!";
+            }
         }
-      }
-      ?></p>
+        ?></p>
     <div class="results-table-container">
         <a href="index.php">Go Back</a>
         <?php
@@ -98,14 +98,9 @@ if (isset($_POST['submit'])) {
             </table>
 </body>
 
-                /*  if (file_exists($uploadPath)) {
-                    echo "Sorry, file already exists.";
-                  }
-                 */
-            }
-            ?>
->>>>>>> 3887e9ed514f895eeb332b07d16cbae205294ecf
-    </div>
+
+
+</div>
 </body>
 
 </html>
