@@ -34,7 +34,7 @@ if (isset($_POST['submit'])) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
     <title>Document</title>
 </head>
 
@@ -72,23 +72,52 @@ if (isset($_POST['submit'])) {
 
 
             </table>
-            <?php
-            if ($_FILES) {
-                $uploadDir = "uploads/";
-                $uploadPath = $uploadDir . basename($_FILES['fileToUpload']['name']);
-                if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadPath)) {
-                    echo "<p> Filen är uppladdad</p>";
-                } else {
-                    echo "<p>Något gick fel med filuppladdning</p>";
-                }
 
-                /*  if (file_exists($uploadPath)) {
-                    echo "Sorry, file already exists.";
-                  }
-                 */
-            }
-            ?>
     </div>
+    <div class="image-container">
+        <?php
+
+        if (isset($_FILES['file'])) {
+
+            $errors = array();
+            $file_name = $_FILES['file']['name'];
+            $file_size = $_FILES['file']['size'];
+            $file_tmp = $_FILES['file']['tmp_name'];
+            $file_type = $_FILES['file']['type'];
+            $file_ext = pathinfo($file_name, PATHINFO_EXTENSION);;
+
+            $uploadDir = "uploads/";
+            $uploadPath = $uploadDir . basename($file_name);
+
+            $extensions = array("jpeg", "jpg", "png");
+
+            if (in_array($file_ext, $extensions) === false) {
+                $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
+            }
+
+            if ($file_size > 2097152) {
+                $errors[] = 'File size must be smaller than 2 MB';
+            }
+
+            if (empty($errors) == true) {
+                move_uploaded_file($file_tmp, $uploadPath);
+
+                echo "Successfully uploaded " . $file_name . " !";
+        ?>
+
+                <h1>Your image</h1>
+                <img src="uploads/<?php echo $file_name ?>" alt="">
+        <?php
+            } else {
+                print_r($errors[0]);
+            }
+        }
+
+        ?>
+
+
+    </div>
+
 </body>
 
 </html>
