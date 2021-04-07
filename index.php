@@ -44,11 +44,13 @@ $categories = $temp_categories;
         <h1>The Zoo</h1>
     </div>
     <div class="form-container">
-        <form action="results.php" method="POST" class="form">
+        <form action="results.php" method="POST" enctype="multipart/form-data" class="form">
             <fieldset>
                 <legend>The Zoo</legend>
                 <label for="letter">Enter an animal name or part of a name</label>
                 <input type="text" id="letter" name="letter" placeholder="E.g. &#8220;älg&#8221; or &#8220;a&#8221;">
+                <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
+                <input type="file" name="fileToUpload" id="ftu">
                 <label for="category">Choose a type of animal</label>
                 <select name="category" id="category">
                     <!--  populated from the database -->

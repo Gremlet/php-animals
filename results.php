@@ -65,10 +65,28 @@ if (isset($_POST['submit'])) {
             echo "<p> Sorry, there were no animals in that category with " . "&#8220;" . $_POST['letter'] . "&#8221;
                 " . " in the name </p> ";
         }
+
+
             ?>
 
 
             </table>
+            <?php
+            if (isset($_POST["submit"])) {
+                $uploadDir = "uploads/";
+                $uploadPath = $uploadDir . basename($_FILES['fileToUpload']['name']);
+                if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadPath)) {
+                    echo "<p> Filen är uppladdad</p>";
+                } else {
+                    echo "<p>Något gick fel</p>";
+                }
+
+                /*  if (file_exists($uploadPath)) {
+                    echo "Sorry, file already exists.";
+                  }
+                 */
+            }
+            ?>
     </div>
 </body>
 
