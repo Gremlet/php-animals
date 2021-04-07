@@ -96,6 +96,25 @@ if (isset($_POST['submit'])) {
 
 
             </table>
+<<<<<<< HEAD
+=======
+            <?php
+            if ($_FILES) {
+                $uploadDir = "uploads/";
+                $uploadPath = $uploadDir . basename($_FILES['fileToUpload']['name']);
+                if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadPath)) {
+                    echo "<p> Filen är uppladdad</p>";
+                } else {
+                    echo "<p>Något gick fel med filuppladdning</p>";
+                }
+
+                /*  if (file_exists($uploadPath)) {
+                    echo "Sorry, file already exists.";
+                  }
+                 */
+            }
+            ?>
+>>>>>>> 3887e9ed514f895eeb332b07d16cbae205294ecf
     </div>
 </body>
 
