@@ -50,7 +50,7 @@ $categories = $temp_categories;
                 <label for="letter">Enter an animal name or part of a name</label>
                 <input type="text" id="letter" name="letter" placeholder="E.g. &#8220;älg&#8221; or &#8220;a&#8221;">
                 <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-                <input type="file" name="fileToUpload" id="ftu">
+                <input type="file" name="fileToUpload"  multiple class="choose" id="ftu">
                 <label for="category">Choose a type of animal</label>
                 <select name="category" id="category">
                     <!--  populated from the database -->

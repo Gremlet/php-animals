@@ -23,21 +23,7 @@ if (isset($_POST['submit'])) {
 
     $result = $statement->fetchAll();
 }
-if(isset($_POST["submit"])) {
-    $uploadDir = "uppladningsFile/";
-    $uploadPath = $uploadDir . basename($_FILES['fileToUpload']['name']);
-    if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadPath)) {
-        echo "Filen är uppladdad";
 
-    } else {
-        echo "Något gick fel";
-    }
-
-   /*  if (file_exists($uploadPath)) {
-        echo "Sorry, file already exists.";
-      }
-     */
-  }
 ?>
 
 <!DOCTYPE html>
@@ -54,6 +40,30 @@ if(isset($_POST["submit"])) {
 
 <body>
     <h1>The Zoo</h1>
+    <p class="show-text">
+    <?php
+    if(isset($_POST["submit"])) {
+        $uploadDir = "uppladningsFile/";
+        $name = $_FILES['fileToUpload']['name'];
+        $uploadPath = $uploadDir . basename($name);
+        $temp = $_FILES['fileToUpload']['tmp_name'];
+        $fileName = pathinfo($name, PATHINFO_FILENAME);
+        $extension = pathinfo($name, PATHINFO_EXTENSION);
+        $counter = 1;
+
+        if (file_exists($uploadDir . $fileName . '.' . $extension)) {
+            $name = $fileName . '-' . $counter . '.' . $extension;
+            $uploadPath = $uploadDir . basename($name);
+            $counter++;
+        }
+
+        if (move_uploaded_file($temp, $uploadPath)) {
+            echo "File " . $name . " is uploaded!";
+        } else {
+            echo "There was an error uploading the file, please try again!";
+        }
+      }
+      ?></p>
     <div class="results-table-container">
         <a href="index.php">Go Back</a>
         <?php
@@ -86,22 +96,6 @@ if(isset($_POST["submit"])) {
 
 
             </table>
-            <?php
-            if (isset($_POST["submit"])) {
-                $uploadDir = "uploads/";
-                $uploadPath = $uploadDir . basename($_FILES['fileToUpload']['name']);
-                if (move_uploaded_file($_FILES['fileToUpload']['tmp_name'], $uploadPath)) {
-                    echo "<p> Filen är uppladdad</p>";
-                } else {
-                    echo "<p>Något gick fel</p>";
-                }
-
-                /*  if (file_exists($uploadPath)) {
-                    echo "Sorry, file already exists.";
-                  }
-                 */
-            }
-            ?>
     </div>
 </body>
 
