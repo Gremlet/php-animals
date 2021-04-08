@@ -3,12 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$host = 'localhost';
-$dbname = 'zoo';
-$user = 'zooAdmin';
-$password = 'zoo';
-
-$dbh = new PDO('mysql:host=localhost;dbname=zoo', $user, $password);
+require("config.php");
 
 // get an array from categories in order to populate the dropdown
 $query_category = "SELECT DISTINCT category FROM animals";
@@ -34,9 +29,9 @@ $categories = $temp_categories;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>The Zoo</title>
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
 </head>
 
 <body>

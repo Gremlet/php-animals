@@ -3,12 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$host = 'localhost';
-$dbname = 'zoo';
-$user = 'zooAdmin';
-$password = 'zoo';
-
-$dbh = new PDO('mysql:host=localhost;dbname=zoo', $user, $password);
+require("config.php");
 
 if (isset($_POST['submit'])) {
 
@@ -35,7 +30,7 @@ if (isset($_POST['submit'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Montserrat&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
-    <title>Document</title>
+    <title>Results</title>
 </head>
 
 <body>
@@ -43,6 +38,7 @@ if (isset($_POST['submit'])) {
     <div class="results-table-container">
         <a href="index.php">Go Back</a>
         <?php
+
         if ($result) {
         ?>
 
@@ -66,10 +62,7 @@ if (isset($_POST['submit'])) {
             echo "<p> Sorry, there were no animals in that category with " . "&#8220;" . $_POST['letter'] . "&#8221;
                 " . " in the name </p> ";
         }
-
-
             ?>
-
 
             </table>
 
@@ -77,9 +70,8 @@ if (isset($_POST['submit'])) {
     <div class="image-container">
         <?php
 
-        if ($_FILES) {
+        if (isset($_FILES['file'])) {
 
-            $errors = array();
             $file_name = $_FILES['file']['name'];
             $file_size = $_FILES['file']['size'];
             $file_tmp = $_FILES['file']['tmp_name'];
@@ -92,25 +84,20 @@ if (isset($_POST['submit'])) {
             $extensions = array("jpeg", "jpg", "png");
 
 
-            if (in_array($file_ext, $extensions) === false) {
-                $errors[] = "extension not allowed, please choose a JPEG or PNG file.";
-            }
-
-            if ($file_size > 2097152) {
-                $errors[] = 'File size must be smaller than 2 MB';
-            }
-
-            if (empty($errors) == true) {
+            if (in_array($file_ext, $extensions) === true && $file_size < 3000000) {
                 move_uploaded_file($file_tmp, $uploadPath);
 
                 echo "Successfully uploaded " . $file_name . " !";
         ?>
 
                 <h1>Your image</h1>
+
                 <img src="uploads/<?php echo $file_name ?>" alt="">
+
+
         <?php
             } else {
-                print_r($errors[0]);
+                echo "No file uploaded. Make sure to only upload jpeg or png files.";
             }
         }
 

@@ -32,6 +32,7 @@ h1 {
 .form-container input[type='text'],
 input[type='button'],
 input[type='submit'],
+input[type='file'],
 select {
   font-family: 'Montserrat', sans-serif;
   background: #fbf7d5;
@@ -41,7 +42,8 @@ select {
 }
 
 input[type='button']:hover,
-input[type='submit']:hover {
+input[type='submit']:hover,
+input[type='file']:hover {
   background-color: #e2bef1;
 }
 
@@ -86,4 +88,8 @@ td {
   background-color: #f9ded7;
   padding: 30px;
   border-radius: 12px;
+  text-align: center;
+}
+img {
+  height: 400px;
 }
