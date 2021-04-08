@@ -5,6 +5,10 @@ error_reporting(E_ALL);
 
 require("config.php");
 
+if (!isset($_POST['submit'])) {
+    header('location: error.php');
+}
+
 if (isset($_POST['submit'])) {
 
     $query = "SELECT * FROM animals WHERE name LIKE CONCAT('%', :letter, '%') && category = :category ";
