@@ -41,6 +41,7 @@ if ((isset($_POST['submit']))) {
 <body ">
   <div class=" container">
   <h2 class="h2">Signup Form</h2>
+  <a href="index.php">Go Back</a>
   <form class="row g-3" action="signup.php" method="POST">
     <div class="col-md-4">
       <label for="validationServer01" class="form-label">First name</label>
@@ -50,11 +51,6 @@ if ((isset($_POST['submit']))) {
       <label for="validationServer02" class="form-label">Last name</label>
       <input type="text" class="form-control" id="LastName" name="LastName" required />
     </div>
-    <div class="col-md-4">
-      <label for="validationServerUsername" class="form-label">Username</label>
-      <div class="input-group has-validation">
-        <input type="text" class="form-control" id="UserName" name="UserName" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
-      </div>
 
     </div>
     <div class="class=" col-md-6"">
@@ -155,8 +151,6 @@ if ((isset($_POST['submit']))) {
 
   body {
     background: linear-gradient(to right top, #65dfc9, #6cdbeb);
-
-
   }
 
   main {
