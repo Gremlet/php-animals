@@ -44,6 +44,7 @@ if(!$result = $con->query($sql))
 <body ">
   <div class="container">
     <h2 class="h2">Signup Form</h2>
+    <a href="index.php">Go Back</a>
     <form class="row g-3" action="signup.php" method="POST">
       <div class="col-md-4">
         <label for="validationServer01" class="form-label">First name</label>
@@ -162,8 +163,6 @@ if(!$result = $con->query($sql))
 }
 body{
     background:linear-gradient(to right top,#65dfc9,#6cdbeb);  
-
-
 }
 main{
     display: flex;
