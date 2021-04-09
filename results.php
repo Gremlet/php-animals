@@ -95,16 +95,7 @@ if (isset($_POST['submit'])) {
             ?>
 
 
-            </table>
-</body>
-
-                /*  if (file_exists($uploadPath)) {
-                    echo "Sorry, file already exists.";
-                  }
-                 */
-            }
-            ?>
->>>>>>> 3887e9ed514f895eeb332b07d16cbae205294ecf
+            </table>   
     </div>
 </body>
 
