@@ -2,7 +2,7 @@
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
-$con = mysqli_connect("localhost", "mohammadali", "", "form") or die(mysqli_error());
+$con = mysqli_connect("localhost", "mohammadali", "", "form");
 
 if ((isset($_POST['submit']))) {
   $id = $con->real_escape_string($_POST['ID']);
@@ -38,51 +38,59 @@ if ((isset($_POST['submit']))) {
 
 </head>
 
-<body ">
+<body>
+
   <div class=" container">
-  <h2 class="h2">Signup Form</h2>
-  <a href="index.php">Go Back</a>
-  <form class="row g-3" action="signup.php" method="POST">
-    <div class="col-md-4">
-      <label for="validationServer01" class="form-label">First name</label>
-      <input type="text" class="form-control" id="FirstName" name="FirstName" required />
-    </div>
-    <div class="col-md-4">
-      <label for="validationServer02" class="form-label">Last name</label>
-      <input type="text" class="form-control" id="LastName" name="LastName" required />
-    </div>
+    <h2 class="h2">Signup Form</h2>
+    <a href="index.php">Go Back</a>
+    <form class="row g-3" action="signup.php" method="POST">
+      <div class="col-md-4">
+        <label for="validationServer01" class="form-label">First name</label>
+        <input type="text" class="form-control" id="FirstName" name="FirstName" required />
+      </div>
+      <div class="col-md-4">
+        <label for="validationServer02" class="form-label">Last name</label>
+        <input type="text" class="form-control" id="LastName" name="LastName" required />
+      </div>
+      <div class="col-md-4">
+        <label for="validationServerUsername" class="form-label">Username</label>
+        <div class="input-group has-validation">
+          <input type="text" class="form-control" id="UserName" name="UserName" aria-describedby="inputGroupPrepend3 validationServerUsernameFeedback" required />
 
-    </div>
-    <div class="class=" col-md-6"">
-      <label for="validationCustomEmail" class="form-label">Email</label>
-      <input type="text" class="form-control" id="Email" name="Email" aria-describedby="validationServer03Feedback" required />
-    </div>
-    <div class="col-md-6">
-      <label for="validationServer03" class="form-label">City</label>
-      <input type="text" class="form-control" id="City" name="City" aria-describedby="validationServer03Feedback" required />
-    </div>
-    <div class="col-md-4">
-      <label for="validationServer01" class="form-label">ID</label>
-      <input type="Number" class="form-control" id="ID" name="ID" required />
-    </div>
 
-    <div class="col-12">
-      <div class="form-check">
-        <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required />
-        <label class="form-check-label" for="invalidCheck3">
-          Agree to terms and conditions
-        </label>
-        <div id="invalidCheck3Feedback" class="invalid-feedback">
-          You must agree before submitting.
+        </div>
+
+      </div>
+      <div class="class=" col-md-6>
+        <label for="validationCustomEmail" class="form-label">Email</label>
+        <input type="text" class="form-control" id="Email" name="Email" aria-describedby="validationServer03Feedback" required />
+      </div>
+      <div class="col-md-6">
+        <label for="validationServer03" class="form-label">City</label>
+        <input type="text" class="form-control" id="City" name="City" aria-describedby="validationServer03Feedback" required />
+      </div>
+      <div class="col-md-4">
+        <label for="validationServer01" class="form-label">ID</label>
+        <input type="Number" class="form-control" id="ID" name="ID" required />
+      </div>
+
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input is-invalid" type="checkbox" value="" id="invalidCheck3" aria-describedby="invalidCheck3Feedback" required />
+          <label class="form-check-label" for="invalidCheck3">
+            Agree to terms and conditions
+          </label>
+          <div id="invalidCheck3Feedback" class="invalid-feedback">
+            You must agree before submitting.
+          </div>
         </div>
       </div>
-    </div>
-    <div class="col-12">
-      <button class="btn btn-primary" type="submit" name="submit">
-        Submit form
-      </button>
-    </div>
-  </form>
+      <div class="col-12">
+        <button class="btn btn-primary" type="submit" name="submit">
+          Submit form
+        </button>
+      </div>
+    </form>
   </div>
 
   <main>
@@ -147,7 +155,16 @@ if ((isset($_POST['submit']))) {
   * {
     margin: 0;
     padding: 0;
+
   }
+
+  body {
+    background: linear-gradient(to right top, #65dfc9, #6cdbeb);
+
+
+  }
+
+
 
   body {
     background: linear-gradient(to right top, #65dfc9, #6cdbeb);
