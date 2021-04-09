@@ -10,17 +10,27 @@ if (!isset($_POST['submit'])) {
 }
 
 if (isset($_POST['submit'])) {
+    // echo $_POST['category'];
 
-    $query = "SELECT * FROM animals WHERE name LIKE CONCAT('%', :letter, '%') && category = :category ";
-    $statement = $dbh->prepare($query, array(PDO::FETCH_ASSOC));
+    if ($_POST['category'] === "all") {
+        $query_all = "SELECT * FROM animals";
+        $statement = $dbh->prepare($query_all, array(PDO::FETCH_ASSOC));
 
-    $statement->execute(array(
-        ':letter' => $_POST['letter'],
-        ':category' => $_POST['category']
-    ));
+        $statement->execute(array());
+
+        $result = $statement->fetchAll();
+    } else {
+        $query = "SELECT * FROM animals WHERE name LIKE CONCAT('%', :letter, '%') && category = :category ";
+        $statement = $dbh->prepare($query, array(PDO::FETCH_ASSOC));
+
+        $statement->execute(array(
+            ':letter' => $_POST['letter'],
+            ':category' => $_POST['category']
+        ));
 
 
-    $result = $statement->fetchAll();
+        $result = $statement->fetchAll();
+    }
 }
 
 ?>

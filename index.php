@@ -15,6 +15,7 @@ foreach ($dbh->query($query_category) as $category_result) {
 }
 // get the array from outside the foreach loop
 $categories = $temp_categories;
+array_push($categories, "all");
 // echo '<pre>';
 // print_r($categories);
 // echo '</pre>';
@@ -48,6 +49,7 @@ $categories = $temp_categories;
                 <label for="category">Choose a type of animal</label>
                 <select name="category" id="category">
                     <!--  populated from the database -->
+                    <option value="<?php echo $categories[4] ?>">View all</option>
                     <option value="<?php echo $categories[0] ?>"><?php echo $categories[0] ?></option>
                     <option value="<?php echo $categories[1] ?>"><?php echo $categories[1] ?></option>
                     <option value="<?php echo $categories[2] ?>"><?php echo $categories[2] ?></option>
