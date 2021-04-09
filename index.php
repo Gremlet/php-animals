@@ -3,12 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
-$host = 'localhost';
-$dbname = 'zoo';
-$user = 'zooAdmin';
-$password = 'zoo';
-
-$dbh = new PDO('mysql:host=localhost;dbname=zoo', $user, $password);
+require("config.php");
 
 // get an array from categories in order to populate the dropdown
 $query_category = "SELECT DISTINCT category FROM animals";
@@ -34,9 +29,9 @@ $categories = $temp_categories;
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>The Zoo</title>
     <link href="https://fonts.googleapis.com/css2?family=Bungee+Inline&family=Montserrat&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="index.css?v=<?php echo time(); ?>">
 </head>
 
 <body>
@@ -49,8 +44,7 @@ $categories = $temp_categories;
                 <legend>The Zoo</legend>
                 <label for="letter">Enter an animal name or part of a name</label>
                 <input type="text" id="letter" name="letter" placeholder="E.g. &#8220;älg&#8221; or &#8220;a&#8221;">
-                <input type="hidden" name="MAX_FILE_SIZE" value="100000" />
-                <input type="file" name="fileToUpload"  multiple class="choose" id="ftu">
+                <input type="file" name="file" id="ftu">
                 <label for="category">Choose a type of animal</label>
                 <select name="category" id="category">
                     <!--  populated from the database -->
